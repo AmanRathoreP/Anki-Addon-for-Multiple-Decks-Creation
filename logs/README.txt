@@ -1,0 +1,1 @@
+This folder has all the generated log files but they won't be tracked by git
