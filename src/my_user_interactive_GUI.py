@@ -8,7 +8,7 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit
 from PyQt5.QtCore import QFile, QTextStream
 import os
-from PyQt5.QtWidgets import QApplication, QLineEdit, QVBoxLayout, QWidget
+from PyQt5.QtWidgets import QApplication, QLineEdit, QVBoxLayout, QWidget, QDialog
 from PyQt5.QtCore import Qt
 
 
@@ -147,6 +147,15 @@ class FileWidget(QWidget):
 
     color = pyqtProperty(QColor, get_color, set_color)
 
+
+class MyCustomDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Multiple Decks Creator")
+        layout = QVBoxLayout()
+        file_widget = FileWidget()
+        layout.addWidget(file_widget)
+        self.setLayout(layout)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
