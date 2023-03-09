@@ -23,8 +23,7 @@ class FileWidget(QWidget):
 
         self.setAcceptDrops(True)
 
-        self.setFixedHeight(500)
-        self.setFixedWidth(800)
+        self.setMinimumSize(800, 500)
         self.setWindowTitle("Multiple decks creator")
 
         self.layout = QVBoxLayout(self)
