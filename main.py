@@ -10,11 +10,6 @@ my_logger.add_log("all stuff imported")
 
 def show_custom_dialog() -> dict:
     dialog = my_user_interactive_GUI.MyCustomDialog(mw)
-    stylesheet = my_user_interactive_GUI.QFile(r"src/my_style.css")
-    stylesheet.open(my_user_interactive_GUI.QFile.ReadOnly |
-                    my_user_interactive_GUI.QFile.Text)
-    stream = my_user_interactive_GUI.QTextStream(stylesheet)
-    dialog.setStyleSheet(stream.readAll())
     dialog.exec_()
 
 

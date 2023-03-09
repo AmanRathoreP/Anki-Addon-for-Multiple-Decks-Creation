@@ -10,6 +10,11 @@ from PyQt5.QtCore import QFile, QTextStream
 import os
 from PyQt5.QtWidgets import QApplication, QLineEdit, QVBoxLayout, QWidget, QDialog
 from PyQt5.QtCore import Qt
+from warnings import warn
+try:
+    from .my_constants import root_dir
+except:
+    warn("Running code outside anki")
 
 
 class FileWidget(QWidget):
@@ -156,6 +161,8 @@ class MyCustomDialog(QDialog):
         file_widget = FileWidget()
         layout.addWidget(file_widget)
         self.setLayout(layout)
+        with open(os.path.join(root_dir, "src", "my_style.css"), 'r') as f:
+            self.setStyleSheet(f.read())
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
