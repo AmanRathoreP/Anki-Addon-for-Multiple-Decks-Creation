@@ -15,7 +15,9 @@ try:
     from .my_constants import root_dir
 except:
     warn("Running code outside anki")
+    root_dir = r"C:\Users\amanr\AppData\Roaming\Anki2\addons21\myaddon2"
 
+input_info = {"deliminator": None, "files": [None, None]}
 
 class FileWidget(QWidget):
     def __init__(self):
@@ -121,9 +123,10 @@ class FileWidget(QWidget):
     def submit_files(self, text_box_data=None):
         """Remove the selected files from the list widget"""
         text_box_data = self.textbox.text()
-        print("submitted")
-        print(text_box_data)
-        print(self.get_files())
+        global input_info
+        input_info = {"deliminator": str(
+            text_box_data), "files": self.get_files()}
+        self.parent().close()
 
     def handle_return_pressed(self):
         self.submit_files()
@@ -163,13 +166,11 @@ class MyCustomDialog(QDialog):
         with open(os.path.join(root_dir, "src", "my_style.css"), 'r') as f:
             self.setStyleSheet(f.read())
 
+    def get_files_info(self) -> dict:
+        return input_info
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    file_widget = FileWidget()
-    # Load the CSS
-    stylesheet = QFile(r"src/my_style.css")
-    stylesheet.open(QFile.ReadOnly | QFile.Text)
-    stream = QTextStream(stylesheet)
-    app.setStyleSheet(stream.readAll())
-    file_widget.show()
+    file_dialog = MyCustomDialog()
+    file_dialog.show()
     sys.exit(app.exec_())
