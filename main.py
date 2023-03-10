@@ -15,15 +15,8 @@ def show_custom_dialog() -> dict:
 def create_multiple_decks() -> None:
     # TODO while logging the info the dict of info is printing two times. Perhaps something is running multiple times fit it
     info = show_custom_dialog()
-    my_logger.add_log(info)
-    info = __get_decks(info["deliminator"], info["files"])
-    my_logger.add_log(info, my_logger.logging.DEBUG)
-
-    if __create_decks(info):
-        my_logger.add_log("Decks created successfully")
-    else:
-        my_logger.add_log("Error occurred in creating decks",
-                          my_logger.logging.DEBUG)
+    mw.showWarning("One or multiple decks were not created") if (__create_decks(__get_decks(
+        info["deliminator"], info["files"])) == False) else print('')
 
 
 
@@ -31,6 +24,8 @@ def __create_decks(decks: list) -> bool:
     """Create decks from the list provide with 
     Returns True if decks are successfully created
     Returns False if decks are not created successfully"""
+    for deck_name in decks:
+        mw.col.decks.id(deck_name)
     return True
 
 
