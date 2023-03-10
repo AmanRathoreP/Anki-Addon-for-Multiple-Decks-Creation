@@ -1,0 +1,117 @@
+/* FileWidget */
+FileWidget {
+    background-color: #1c1c1c;
+    border: 1px solid #4d4d4d;
+    border-radius: 5px;
+}
+
+/* File label */
+QLabel#file_label {
+    border: none;
+    background-color: transparent;
+    font-size: 22px;
+    padding: 10px;
+    color: #ffffff;
+}
+
+/* File list */
+QListWidget#file_list {
+    border: none;
+    background-color: #1c1c1c;
+    font-size: 18px;
+    padding: 10px;
+    color: #bfbfbf;
+}
+
+QListWidget#file_list::item {
+    padding: 5px;
+}
+
+QListWidget#file_list::item:hover {
+    background-color: #3a3a3a;
+}
+
+QListWidget#file_list::item:selected {
+    background-color: #4d4d4d;
+}
+
+QListWidget#file_list::item:selected:active {
+    background-color: #3a3a3a;
+}
+
+QListWidget#file_list::item:alternate {
+    background-color: #3a3a3a;
+}
+
+QListWidget#file_list::item:selected:alternate {
+    background-color: #4d4d4d;
+}
+
+/* Buttons */
+QPushButton {
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 10px;
+}
+
+QPushButton#add_button {
+    background-color: #008000;
+    color: #ffffff;
+}
+
+QPushButton#add_button:hover {
+    background-color: #006600;
+}
+
+QPushButton#delete_button {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
+QPushButton#delete_button:hover {
+    background-color: #cc0000;
+}
+
+QPushButton#submit_button {
+    background-color: #2F43FF;
+    color: #ffffff;
+}
+
+QPushButton#submit_button:hover {
+    background-color: #1a31fd;
+}
+
+/* Line edit */
+QLineEdit {
+    border: 2px solid #333333;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 18px;
+    font-family: "Courier New", monospace;
+    color: #bfbfbf;
+    background-color: #1c1c1c;
+}
+
+QLineEdit:focus {
+    border: 2px solid #4d4d4d;
+    outline: none;
+}
+
+QLineEdit:hover {
+    background-color: #3a3a3a;
+}
+
+QLineEdit::placeholder {
+    color: #666666;
+}
+
+QLineEdit::selection {
+    color: #ffffff;
+    background-color: #4d4d4d;
+}
+
+/* Dialog */
+QDialog {
+    background-color: #1c1c1c;
+}
