@@ -1,7 +1,7 @@
 from aqt.qt import QAction
 from aqt.utils import qconnect
 from aqt import mw
-from .src import my_logger, my_constants, my_user_interactive_GUI
+from .src import my_logger, my_user_interactive_GUI
 
 my_logger.add_log("all stuff imported")
 
@@ -13,7 +13,7 @@ def show_custom_dialog() -> dict:
 
 
 def create_multiple_decks() -> None:
-    # TODO while logging the info the dict of info is printing two times. Perhaps something is running multiple times fit it
+    # TODO while logging the info the dict of info is printing two times. Perhaps something is running multiple times fix it
     info = show_custom_dialog()
     mw.showWarning("One or multiple decks were not created") if (__create_decks(__get_decks(
         info["deliminator"], info["files"])) == False) else print('')

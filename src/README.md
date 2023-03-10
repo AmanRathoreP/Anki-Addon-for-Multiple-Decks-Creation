@@ -1,0 +1,1 @@
+This folder contains some of the source files which are been used by the addon
