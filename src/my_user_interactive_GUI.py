@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtCore import QFile, QTextStream
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QWidget, QVBoxLayout,  QLabel, QPushButton, QListWidget, QListWidgetItem, QFileDialog, QLineEdit
-from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtGui import QPalette, QColor, QKeyEvent
 from PyQt5.QtCore import Qt, pyqtProperty
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit
@@ -39,6 +39,7 @@ class FileWidget(QWidget):
 
         self.file_list = QListWidget(self)
         self.file_list.setObjectName("file_list")
+        self.file_list.setSelectionMode(QListWidget.ExtendedSelection)
         self.layout.addWidget(self.file_list)
 
         self.add_button = QPushButton("Add Files", self)
@@ -127,6 +128,8 @@ class FileWidget(QWidget):
         global input_info
         input_info = {"deliminator": str(
             text_box_data), "files": self.get_files()}
+        if __name__ == "__main__":
+            print(input_info)
         self.parent().close()
 
     def handle_return_pressed(self):
@@ -155,6 +158,13 @@ class FileWidget(QWidget):
 
     color = pyqtProperty(QColor, get_color, set_color)
 
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() == Qt.Key_Delete:
+            # Delete the selected items from the QListWidget
+            selected_items = self.file_list.selectedItems()
+            for item in selected_items:
+                self.file_list.takeItem(self.file_list.row(item))
+        self.update_selected_files_number()
 
 class MyCustomDialog(QDialog):
     def __init__(self, parent=None):
