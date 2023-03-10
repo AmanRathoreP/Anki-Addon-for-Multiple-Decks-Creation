@@ -1,7 +1,4 @@
 {
-	"File info": "This is a config file for the configuration of myaddon2",
-	"File info": "This is a config file for the configuration of myaddon2",
-	"File info": "This is a config file for the configuration of myaddon2",
-	"File info": "This is a config file for the configuration of myaddon2",
-	"File info": "This is a config file for the configuration of myaddon2"
+    "use_external_style_sheet": true,
+    "style_sheet_to_use": "default.css"
 }

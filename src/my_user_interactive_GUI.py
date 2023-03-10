@@ -3,12 +3,11 @@ from PyQt5.QtGui import QPalette, QColor, QKeyEvent
 from PyQt5.QtCore import Qt, pyqtProperty
 import os
 from PyQt5.QtWidgets import QLineEdit, QVBoxLayout, QWidget, QDialog
-try:
-    from .my_constants import (style_sheets_dir, style_sheet_to_use)
-except:
-    from warnings import warn
-    warn("Running code outside anki")
-    style_sheets_dir, style_sheet_to_use = r"C:\Users\amanr\AppData\Roaming\Anki2\addons21\myaddon2\user_files", "default.css"
+if __name__ != "__main__":
+    from . import my_constants
+else:
+    # Reaching here because the program is running outside anki
+    import my_constants
 
 input_info = {"deliminator": None, "files": [None, None]}
 
@@ -175,8 +174,12 @@ class MyCustomDialog(QDialog):
         file_widget = FileWidget()
         layout.addWidget(file_widget)
         self.setLayout(layout)
-        with open(os.path.join(style_sheets_dir, style_sheet_to_use), 'r') as f:
-            self.setStyleSheet(f.read())
+        if my_constants.use_external_style_sheet:
+            with open(os.path.join(my_constants.style_sheets_dir, my_constants.style_sheet_to_use), 'r') as f:
+                self.setStyleSheet(f.read())
+        else:
+            # Need to use no external css i.e. need to use anki build in css
+            pass
 
     def get_files_info(self) -> dict:
         return input_info
