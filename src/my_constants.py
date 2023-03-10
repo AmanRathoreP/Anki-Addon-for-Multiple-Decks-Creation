@@ -1,18 +1,7 @@
 import os
 import json
-addon_id = 'myaddon2'
-try:
-    # * Generate an error in this block whenever you are running GUI dialog outside the anki
-    # ewr
-    from aqt import mw
-    root_dir = os.path.join(mw.pm.addonFolder(), addon_id)
 
-except:
-    from warnings import warn
-    warn("Running code outside anki")
-    root_dir = os.path.join(
-        r"C:\Users\amanr\AppData\Roaming\Anki2\addons21", addon_id)
-
+root_dir = os.path.dirname(os.path.dirname(__file__))
 
 logs_dir = os.path.join(root_dir, "logs")
 style_sheets_dir = os.path.join(root_dir, "user_files")
