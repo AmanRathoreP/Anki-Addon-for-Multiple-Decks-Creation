@@ -1,5 +1,3 @@
-from __future__ import (absolute_import, division,
-                        print_function, unicode_literals)
 from aqt.qt import QAction
 from aqt.utils import qconnect
 from aqt import mw

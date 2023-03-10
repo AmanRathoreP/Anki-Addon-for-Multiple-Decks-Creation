@@ -1,19 +1,12 @@
-import sys
-from PyQt5.QtCore import QFile, QTextStream
-from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QWidget, QVBoxLayout,  QLabel, QPushButton, QListWidget, QListWidgetItem, QFileDialog, QLineEdit
 from PyQt5.QtGui import QPalette, QColor, QKeyEvent
 from PyQt5.QtCore import Qt, pyqtProperty
-import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit
-from PyQt5.QtCore import QFile, QTextStream
 import os
-from PyQt5.QtWidgets import QApplication, QLineEdit, QVBoxLayout, QWidget, QDialog
-from PyQt5.QtCore import Qt
-from warnings import warn
+from PyQt5.QtWidgets import QLineEdit, QVBoxLayout, QWidget, QDialog
 try:
     from .my_constants import (style_sheets_dir, style_sheet_to_use)
 except:
+    from warnings import warn
     warn("Running code outside anki")
     style_sheets_dir, style_sheet_to_use = r"C:\Users\amanr\AppData\Roaming\Anki2\addons21\myaddon2\user_files", "default.css"
 
@@ -25,6 +18,7 @@ class QListWidget(QListWidget):
         # Check if the item already exists in the list, if not then add it
         if item.text() not in [self.item(i).text()for i in range(self.count())]:
             super().addItem(QListWidgetItem(item))
+
 
 class FileWidget(QWidget):
     def __init__(self):
@@ -56,7 +50,7 @@ class FileWidget(QWidget):
         self.delete_button.setObjectName("delete_button")
         self.layout.addWidget(self.delete_button)
 
-        self.submit_button = QPushButton("Submit", self)
+        self.submit_button = QPushButton("Create Decks", self)
         self.submit_button.setObjectName("submit_button")
         self.layout.addWidget(self.submit_button)
 
@@ -85,7 +79,6 @@ class FileWidget(QWidget):
             self.update_selected_files_number()
 
     def update_selected_files_number(self):
-
         def __extract_file_names(file_paths):
             file_name_dict = {}
             for file_path in file_paths:
@@ -139,6 +132,7 @@ class FileWidget(QWidget):
         self.parent().close()
 
     def handle_return_pressed(self):
+        """Called when user presses the enter key on the keyboard and user is also inputting the text in the text box"""
         self.submit_files()
 
     def get_files(self):
@@ -189,6 +183,8 @@ class MyCustomDialog(QDialog):
 
 
 if __name__ == "__main__":
+    import sys
+    from PyQt5.QtWidgets import QApplication
     app = QApplication(sys.argv)
     file_dialog = MyCustomDialog()
     file_dialog.show()
