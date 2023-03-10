@@ -34,8 +34,13 @@ def __get_decks(deliminator: str, file_paths: list) -> list:
     Returns list of the decks"""
     decks = set()
     for file_path in file_paths:
-        with open(file_path, 'r') as f:
-            decks.update(f.read().split(deliminator))
+        try:
+            with open(file_path, 'r') as f:
+                decks.update(f.read().split(deliminator))
+        except Exception as e:
+            my_logger.add_log(
+                "Probably the file is non readable", my_logger.logging.ERROR)
+            my_logger.add_log(e, my_logger.logging.ERROR)
     return [item for item in list(decks) if item.strip()]
 
 action = QAction("Create Multiple Decks", mw)

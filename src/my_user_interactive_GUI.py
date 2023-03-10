@@ -9,7 +9,7 @@ else:
     # Reaching here because the program is running outside anki
     import my_constants
 
-input_info = {"deliminator": None, "files": [None, None]}
+input_info = {"deliminator": '', "files": []}
 
 
 class QListWidget(QListWidget):
