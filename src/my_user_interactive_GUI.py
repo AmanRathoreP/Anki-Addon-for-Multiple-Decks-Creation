@@ -166,6 +166,7 @@ class FileWidget(QWidget):
                 self.file_list.takeItem(self.file_list.row(item))
         self.update_selected_files_number()
 
+
 class MyCustomDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
