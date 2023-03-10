@@ -20,6 +20,12 @@ except:
 input_info = {"deliminator": None, "files": [None, None]}
 
 
+class QListWidget(QListWidget):
+    def addItem(self, item):
+        # Check if the item already exists in the list, if not then add it
+        if item.text() not in [self.item(i).text()for i in range(self.count())]:
+            super().addItem(QListWidgetItem(item))
+
 class FileWidget(QWidget):
     def __init__(self):
         super().__init__()
