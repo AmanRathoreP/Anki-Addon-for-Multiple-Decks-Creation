@@ -1,0 +1,1 @@
+This folder contains some of the user files like different themes for the addon's GUI

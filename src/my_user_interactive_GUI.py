@@ -12,12 +12,13 @@ from PyQt5.QtWidgets import QApplication, QLineEdit, QVBoxLayout, QWidget, QDial
 from PyQt5.QtCore import Qt
 from warnings import warn
 try:
-    from .my_constants import root_dir
+    from .my_constants import (style_sheets_dir, style_sheet_to_use)
 except:
     warn("Running code outside anki")
-    root_dir = r"C:\Users\amanr\AppData\Roaming\Anki2\addons21\myaddon2"
+    style_sheets_dir, style_sheet_to_use = r"C:\Users\amanr\AppData\Roaming\Anki2\addons21\myaddon2\user_files", "default.css"
 
 input_info = {"deliminator": None, "files": [None, None]}
+
 
 class FileWidget(QWidget):
     def __init__(self):
@@ -163,11 +164,12 @@ class MyCustomDialog(QDialog):
         file_widget = FileWidget()
         layout.addWidget(file_widget)
         self.setLayout(layout)
-        with open(os.path.join(root_dir, "src", "my_style.css"), 'r') as f:
+        with open(os.path.join(style_sheets_dir, style_sheet_to_use), 'r') as f:
             self.setStyleSheet(f.read())
 
     def get_files_info(self) -> dict:
         return input_info
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
