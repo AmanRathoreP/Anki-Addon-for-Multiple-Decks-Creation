@@ -23,8 +23,9 @@
 ### via anki downloader (_Recommended_)
 Copy the following addon id and download it 
 ```bash
-154521587132(this is not a real id, real id will be available soon)
+461193445
 ```
+> NOTE: This is the [anki homepage](https://ankiweb.net/shared/info/461193445) for the addon.
 ### via custom download
 - Step 1.) Download the latest version of the addon by seeing the release section
 - Step 2.) Place the addon files into the anki addon folder
