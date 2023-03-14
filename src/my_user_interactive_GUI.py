@@ -63,6 +63,8 @@ class FileWidget(QWidget):
         self.textbox.setPlaceholderText("Data is delimited by")
         self.textbox.setObjectName("submit_button")
         self.textbox.returnPressed.connect(self.handle_return_pressed)
+        self.textbox.setToolTip(
+            "Use-<br><b>\\n</b> for new line<br><b>\\t</b> for tab space<br><i>NOTE: If you are using </i><b>\\t</b><i> then make sure to add </i><b>\\t</b><i> everywhere even when you are switching to new line in the file for importing decks!</i>")
         self.layout.addWidget(self.textbox)
 
         self.update_selected_files_number()
@@ -125,7 +127,7 @@ class FileWidget(QWidget):
         text_box_data = self.textbox.text()
         global input_info
         input_info = {"deliminator": str(
-            text_box_data), "files": self.get_files()}
+            text_box_data).replace("\\n", '\n').replace("\\t", '\t'), "files": self.get_files()}
         if __name__ == "__main__":
             print(input_info)
         self.parent().close()
