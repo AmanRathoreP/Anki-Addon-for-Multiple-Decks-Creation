@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout,  QLabel, QPushButton, QListWidget, QListWidgetItem, QFileDialog, QLineEdit
+from PyQt5.QtWidgets import QWidget, QVBoxLayout,  QLabel, QPushButton, QListWidget, QListWidgetItem, QFileDialog, QLineEdit, QAbstractItemView
 from PyQt5.QtGui import QPalette, QColor, QKeyEvent
 from PyQt5.QtCore import Qt, pyqtProperty
 import os
@@ -38,7 +38,7 @@ class FileWidget(QWidget):
 
         self.file_list = QListWidget(self)
         self.file_list.setObjectName("file_list")
-        self.file_list.setSelectionMode(QListWidget.ExtendedSelection)
+        self.file_list.setSelectionMode(QAbstractItemView.MultiSelection)
         self.layout.addWidget(self.file_list)
 
         self.add_button = QPushButton("Add Files", self)
