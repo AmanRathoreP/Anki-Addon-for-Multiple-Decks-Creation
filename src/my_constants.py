@@ -1,6 +1,13 @@
 import os
 import json
 
+from aqt.qt import qtmajor
+
+if qtmajor == 5:
+    qt_version = 5
+else:
+    qt_version = 6
+
 root_dir = os.path.dirname(os.path.dirname(__file__))
 
 logs_dir = os.path.join(root_dir, "logs")

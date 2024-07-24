@@ -8,7 +8,12 @@ my_logger.add_log("all stuff imported")
 
 def show_custom_dialog() -> dict:
     dialog = my_user_interactive_GUI.MyCustomDialog(mw)
-    dialog.exec_()
+    
+    if my_logger.my_constants.qt_version == 5:
+        dialog.exec_()
+    else:
+        dialog.exec()
+
     return dialog.get_files_info()
 
 

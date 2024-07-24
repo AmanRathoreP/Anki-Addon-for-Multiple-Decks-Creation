@@ -1,13 +1,20 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout,  QLabel, QPushButton, QListWidget, QListWidgetItem, QFileDialog, QLineEdit, QAbstractItemView
-from PyQt5.QtGui import QPalette, QColor, QKeyEvent
-from PyQt5.QtCore import Qt, pyqtProperty
 import os
-from PyQt5.QtWidgets import QLineEdit, QVBoxLayout, QWidget, QDialog
 if __name__ != "__main__":
     from . import my_constants
 else:
     # Reaching here because the program is running outside anki
     import my_constants
+
+if my_constants.qt_version == 5:
+    from PyQt5.QtWidgets import QWidget, QVBoxLayout,  QLabel, QPushButton, QListWidget, QListWidgetItem, QFileDialog, QLineEdit, QAbstractItemView
+    from PyQt5.QtGui import QPalette, QColor, QKeyEvent
+    from PyQt5.QtCore import Qt, pyqtProperty
+    from PyQt5.QtWidgets import QLineEdit, QVBoxLayout, QWidget, QDialog
+else:
+    from PyQt6.QtWidgets import QWidget, QVBoxLayout,  QLabel, QPushButton, QListWidget, QListWidgetItem, QFileDialog, QLineEdit, QAbstractItemView
+    from PyQt6.QtGui import QPalette, QColor, QKeyEvent
+    from PyQt6.QtCore import Qt, pyqtProperty
+    from PyQt6.QtWidgets import QLineEdit, QVBoxLayout, QWidget, QDialog
 
 input_info = {"deliminator": '', "files": []}
 
@@ -33,12 +40,12 @@ class FileWidget(QWidget):
 
         self.file_label = QLabel(self)
         self.file_label.setObjectName("file_label")
-        self.file_label.setAlignment(Qt.AlignCenter)
+        self.file_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(self.file_label)
 
         self.file_list = QListWidget(self)
         self.file_list.setObjectName("file_list")
-        self.file_list.setSelectionMode(QAbstractItemView.MultiSelection)
+        self.file_list.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
         self.layout.addWidget(self.file_list)
 
         self.add_button = QPushButton("Add Files", self)
@@ -160,7 +167,7 @@ class FileWidget(QWidget):
     color = pyqtProperty(QColor, get_color, set_color)
 
     def keyPressEvent(self, event: QKeyEvent):
-        if event.key() == Qt.Key_Delete:
+        if event.key() == Qt.Key.Key_Delete:
             # Delete the selected items from the QListWidget
             selected_items = self.file_list.selectedItems()
             for item in selected_items:
@@ -189,8 +196,19 @@ class MyCustomDialog(QDialog):
 
 if __name__ == "__main__":
     import sys
-    from PyQt5.QtWidgets import QApplication
+
+    if my_constants.qt_version == 5:
+        from PyQt5.QtWidgets import QApplication
+    else:
+        from PyQt6.QtWidgets import QApplication
+
+    print(f"Active Qt version = {my_constants.qt_version}")
+
     app = QApplication(sys.argv)
     file_dialog = MyCustomDialog()
     file_dialog.show()
-    sys.exit(app.exec_())
+
+    if my_constants.qt_version == 5:
+        sys.exit(app.exec_())
+    else:
+        sys.exit(app.exec())
