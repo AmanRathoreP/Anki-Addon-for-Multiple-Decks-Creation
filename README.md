@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Anki Multiple decks creator</h1>
+  <h1>Anki Multiple decks creator - v1.1.1</h1>
 </div>
 
 <p align="center">
@@ -17,6 +17,7 @@
   * Can be imported using the selection menu
 * Selection of multiple themes
   * Can specify custom theme
+* Works with QT5 as well as QT6
 
 ## Quick start
 
