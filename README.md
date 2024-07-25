@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Anki Multiple decks creator - v1.1.1</h1>
+  <h1>Anki Multiple decks creator - v1.1.0</h1>
 </div>
 
 <p align="center">
